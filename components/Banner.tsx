@@ -6,9 +6,6 @@ export const Banner = () => {
           Welcome to the most awesome blog, built with Next.js, Typescript, Sanity and Tailwind CSS
           ❤️
         </h1>
-        <h2 className='px-6 py-6 text-gray-800 font-mono w-full'>
-          Feel free to post anything you want to share :D.
-        </h2>
       </div>
     </div>
   );

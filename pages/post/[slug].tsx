@@ -2,31 +2,29 @@ import { GetStaticProps } from 'next';
 import { sanityClient, urlFor } from '../../sanity';
 import { Post } from '../../typings';
 import PortableText from 'react-portable-text';
-import { DiscussionEmbed } from 'disqus-react';
-import { CommentEmbed } from 'disqus-react';
+import Script from 'next/script';
 
 interface Props {
   post: Post;
 }
 
 function Post({ post }: Props) {
-  console.log(post);
-
   return (
     <main>
+      <div className='w-full h-screen bg-[#111111] -mt-2 absolute -z-10' />
       <img className='w-full h-40 object-cover' src={urlFor(post.mainImage).url()!} alt='' />
       <article className='max-w-3xl mx-auto p-5'>
-        <h1 className='text-3xl mt-10 mb-3'>{post.title}</h1>
-        <h2 className='text-xl font-light text-gray-500 mb-2'>{post.description}</h2>
+        <h1 className='text-3xl text-zinc-300 mt-2 mb-3'>{post.title}</h1>
+        <h2 className='text-xl font-light text-yellow-400 mb-2'>{post.description}</h2>
         <div className='flex items-center space-x-2'>
           <img className='h-10 w-10 rounded-full' src={urlFor(post.author.image).url()!} alt='' />
-          <p className='font-extralight text-sm'>
-            Blog posted by <span className='text-green-600'>{post.author.name}</span> - Published at{' '}
-            {new Date(post._createdAt).toLocaleString()}
+          <p className='font-extralight text-sm text-zinc-300'>
+            Blog posted by <span className='text-yellow-400'>{post.author.name}</span> - Published
+            at&nbsp;{new Date(post._createdAt).toLocaleString()}
           </p>
         </div>
 
-        <div className='mt-10'>
+        <div className='mt-10 text-zinc-300'>
           <PortableText
             dataset={process.env.NEXT_PUBLIC_SANITY_DATASET!}
             projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!}
@@ -44,22 +42,21 @@ function Post({ post }: Props) {
           />
         </div>
       </article>
-      <DiscussionEmbed
-        shortname='example'
-        config={{
-          url: `${post.slug}`,
-          identifier: post._id,
-          title: post.title,
-          language: 'es',
-        }}
-      />
-      <CommentEmbed
-        commentId={post._id}
-        showMedia={true}
-        showParentComment={true}
-        width={420}
-        height={320}
-      />
+      <div id='disqus_thread' className='mt-8 p-8 bg-zinc-200 rounded-2xl'>
+        <Script>
+          {`var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-sf-nextjs-blog-vercel-app.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();`}
+        </Script>
+      </div>
     </main>
   );
 }
