@@ -41,11 +41,11 @@ function Post({ post }: Props) {
           />
         </div>
       </article>
-      <div id='disqus_thread' className='mt-8 p-8 mb-auto  bg-zinc-200 rounded-t-3xl'>
+      <div id='disqus_thread' className='mt-8 p-8 mb-auto bg-zinc-200 rounded-t-3xl'>
         <Script>
           {`var disqus_config = function () {
-    this.page.url = 'https://sf-nextjs-blog.vercel.app/';  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = post._id; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    this.page.url = document.location.href;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = {post.slug} // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     
     (function() { // DON'T EDIT BELOW THIS LINE
