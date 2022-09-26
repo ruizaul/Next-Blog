@@ -11,7 +11,6 @@ interface Props {
 function Post({ post }: Props) {
   return (
     <main>
-      <div className='w-full h-screen bg-[#111111] -mt-2 absolute -z-10' />
       <img className='w-full h-40 object-cover' src={urlFor(post.mainImage).url()!} alt='' />
       <article className='max-w-3xl mx-auto p-5'>
         <h1 className='text-3xl text-zinc-300 mt-2 mb-3'>{post.title}</h1>
@@ -42,11 +41,11 @@ function Post({ post }: Props) {
           />
         </div>
       </article>
-      <div id='disqus_thread' className='mt-8 p-8 bg-zinc-200 rounded-2xl'>
+      <div id='disqus_thread' className='mt-8 p-8 mb-auto  bg-zinc-200 rounded-t-3xl'>
         <Script>
           {`var disqus_config = function () {
-    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    this.page.url = 'https://sf-nextjs-blog.vercel.app/';  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = post._id; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     
     (function() { // DON'T EDIT BELOW THIS LINE
