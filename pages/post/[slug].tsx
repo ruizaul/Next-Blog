@@ -12,7 +12,7 @@ function Post({ post }: Props) {
   return (
     <main className='flex flex-col h-screen'>
       <img className='w-full h-40 object-cover' src={urlFor(post.mainImage).url()!} alt='' />
-      <article className='max-w-3xl mx-auto p-5'>
+      <article className='max-w-7xl mx-auto p-5'>
         <h1 className='text-3xl text-zinc-300 mt-2 mb-3'>{post.title}</h1>
         <h2 className='text-xl font-light text-yellow-400 mb-5'>{post.description}</h2>
         <div className='flex items-center space-x-2'>
@@ -43,7 +43,7 @@ function Post({ post }: Props) {
       </article>
       <footer
         id='disqus_thread'
-        className='w-full left-0 bottom-0 mt-10 p-8 h-screen bg-zinc-200 rounded-t-3xl'
+        className='w-full left-0 bottom-0 mt-10 p-8 h-fit bg-zinc-200 rounded-t-3xl'
       >
         <Script>
           {`var disqus_config = function () {

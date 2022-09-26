@@ -15,7 +15,7 @@ export default function Home({ posts }: Props) {
         <title>SF Blog</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <div className='bg-[url("../public/assets/blob.svg")] bg-no-repeat bg-cover w-full h-screen absolute -z-10'>
+      <div className='bg-[url("../public/assets/back.png")] bg-no-repeat bg-cover w-full h-screen absolute -z-10'>
         <div className='max-w-7xl mx-auto mt-2'>
           <Banner />
 
@@ -72,3 +72,4 @@ export const getServerSideProps = async () => {
     },
   };
 };
+
