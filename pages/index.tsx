@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { sanityClient, urlFor } from '../sanity';
 import { Post } from '../typings';
-import { Banner } from '../components/banner';
+import { Banner } from '../components';
 
 interface Props {
   posts: [Post];
