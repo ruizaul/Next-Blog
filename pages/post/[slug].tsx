@@ -10,11 +10,11 @@ interface Props {
 
 function Post({ post }: Props) {
   return (
-    <main>
+    <main className='flex flex-col h-screen'>
       <img className='w-full h-40 object-cover' src={urlFor(post.mainImage).url()!} alt='' />
       <article className='max-w-3xl mx-auto p-5'>
         <h1 className='text-3xl text-zinc-300 mt-2 mb-3'>{post.title}</h1>
-        <h2 className='text-xl font-light text-yellow-400 mb-2'>{post.description}</h2>
+        <h2 className='text-xl font-light text-yellow-400 mb-5'>{post.description}</h2>
         <div className='flex items-center space-x-2'>
           <img className='h-10 w-10 rounded-full' src={urlFor(post.author.image).url()!} alt='' />
           <p className='font-extralight text-sm text-zinc-300'>
@@ -41,7 +41,10 @@ function Post({ post }: Props) {
           />
         </div>
       </article>
-      <div id='disqus_thread' className='mt-8 p-8 mb-auto bg-zinc-200 rounded-t-3xl'>
+      <footer
+        id='disqus_thread'
+        className='w-full left-0 bottom-0 mt-10 p-8 h-screen bg-zinc-200 rounded-t-3xl'
+      >
         <Script>
           {`var disqus_config = function () {
     this.page.url = document.location.href;  // Replace PAGE_URL with your page's canonical URL variable
@@ -55,7 +58,7 @@ function Post({ post }: Props) {
     (d.head || d.body).appendChild(s);
     })();`}
         </Script>
-      </div>
+      </footer>
     </main>
   );
 }
