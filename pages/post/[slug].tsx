@@ -11,7 +11,7 @@ interface Props {
 function Post({ post }: Props) {
   const disqusShortname = 'https-sf-nextjs-blog-vercel-app';
   const disqusConfig = {
-    url: `https://sf-nextjs-blog.vercel.app/post/${post.slug}`,
+    url: `https://sf-nextjs-blog.vercel.app/post/${post.slug.current}`,
     identifier: post._id, // Single post id
     title: post.title, // Single post title
   };
