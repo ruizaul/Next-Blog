@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { sanityClient, urlFor } from '../sanity';
 import { Post } from '../typings';
 import { Banner } from '../components';
+import Image from 'next/image';
 
 interface Props {
   posts: [Post];
@@ -23,8 +24,13 @@ export default function Home({ posts }: Props) {
             {posts.map((post) => (
               <Link key={post._id} href={`/post/${post.slug.current}`}>
                 <div className='group cursor-pointer  shadow-gray-600 shadow-md rounded-lg overflow-hidden'>
-                  <img
-                    className='h-60 w-full  object-cover group-hover:scale-105 transition-transform duration-200 ease-in-out'
+                  <Image
+                    className='group-hover:scale-105 transition-transform duration-200 ease-in-out'
+                    width={500}
+                    height={300}
+                    layout='responsive'
+                    objectFit='cover'
+                    priority={true}
                     src={urlFor(post.mainImage).url()!}
                     alt=''
                   />
@@ -35,11 +41,15 @@ export default function Home({ posts }: Props) {
                         {post.description} by {post.author.name}
                       </p>
                     </div>
-                    <img
-                      className='h-12 w-12 rounded-full'
-                      src={urlFor(post.author.image).url()!}
-                      alt=''
-                    />
+                    <div>
+                      <Image
+                        className='rounded-full'
+                        width={48}
+                        height={48}
+                        src={urlFor(post.author.image).url()!}
+                        alt=''
+                      />
+                    </div>
                   </div>
                 </div>
               </Link>

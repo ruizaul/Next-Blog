@@ -3,6 +3,8 @@ import { sanityClient, urlFor } from '../../sanity';
 import { Post } from '../../typings';
 import PortableText from 'react-portable-text';
 import { DiscussionEmbed } from 'disqus-react';
+import Moment from 'moment';
+import Image from 'next/image';
 
 interface Props {
   post: Post;
@@ -11,25 +13,39 @@ interface Props {
 function Post({ post }: Props) {
   const disqusShortname = 'https-sf-nextjs-blog-vercel-app';
   const disqusConfig = {
-    url: `https://sf-nextjs-blog.vercel.app/post/${post.slug.current}`,
+    url: `https://sf-nextjs-blog.vercel.app/post/`,
     identifier: post.slug.current, // Single post id
     title: post.title, // Single post title
   };
 
-  console.log(post.slug);
-  
-
   return (
     <main className='flex flex-col h-screen'>
-      <img className='w-full h-40 object-cover' src={urlFor(post.mainImage).url()!} alt='' />
+      <div>
+        <Image
+          src={urlFor(post.mainImage).url()!}
+          alt=''
+          width={200}
+          height={40}
+          objectFit='cover'
+          priority={true}
+          layout='responsive'
+        />
+      </div>
       <article className='max-w-7xl mx-auto p-5'>
         <h1 className='text-3xl text-zinc-300 mt-2 mb-3'>{post.title}</h1>
         <h2 className='text-xl font-light text-yellow-400 mb-5'>{post.description}</h2>
         <div className='flex items-center space-x-2'>
-          <img className='h-10 w-10 rounded-full' src={urlFor(post.author.image).url()!} alt='' />
+          <Image
+            className='rounded-full'
+            src={urlFor(post.author.image).url()!}
+            alt=''
+            width={40}
+            height={40}
+            objectFit='cover'
+          />
           <p className='font-extralight text-sm text-zinc-300'>
             Blog posted by <span className='text-yellow-400'>{post.author.name}</span> - Published
-            at&nbsp;{new Date(post._createdAt).toLocaleString()}
+            at&nbsp;{Moment(post._createdAt).toLocaleString()}
           </p>
         </div>
 
@@ -55,13 +71,6 @@ function Post({ post }: Props) {
       <div className='w-full left-0 bottom-0 mt-10 p-8 h-full bg-zinc-200 rounded-t-3xl'>
         <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
       </div>
-
-      {/* <footer
-        id='disqus_thread'
-        className='w-full left-0 bottom-0 mt-10 p-8 h-fit bg-zinc-200 rounded-t-3xl'
-      >
-       
-      </footer> */}
     </main>
   );
 }
