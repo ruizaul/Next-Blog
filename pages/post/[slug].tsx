@@ -9,10 +9,10 @@ interface Props {
 }
 
 function Post({ post }: Props) {
-  const disqusShortname = 'saul';
+  const disqusShortname = 'https-sf-nextjs-blog-vercel-app';
   const disqusConfig = {
-    url: `https://sf-nextjs-blog.vercel.app/post/${post.slug}`,
-    identifier: post._id, // Single post id
+    url: `https://sf-nextjs-blog.vercel.app`,
+    identifier: post.slug, // Single post id
     title: post.title, // Single post title
   };
 
