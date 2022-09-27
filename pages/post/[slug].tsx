@@ -12,9 +12,12 @@ function Post({ post }: Props) {
   const disqusShortname = 'https-sf-nextjs-blog-vercel-app';
   const disqusConfig = {
     url: `https://sf-nextjs-blog.vercel.app/post/${post.slug.current}`,
-    identifier: post._id, // Single post id
+    identifier: post.slug.current, // Single post id
     title: post.title, // Single post title
   };
+
+  console.log(post.slug);
+  
 
   return (
     <main className='flex flex-col h-screen'>
