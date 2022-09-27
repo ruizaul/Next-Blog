@@ -2,13 +2,20 @@ import { GetStaticProps } from 'next';
 import { sanityClient, urlFor } from '../../sanity';
 import { Post } from '../../typings';
 import PortableText from 'react-portable-text';
-import Script from 'next/script';
+import { DiscussionEmbed } from 'disqus-react';
 
 interface Props {
   post: Post;
 }
 
 function Post({ post }: Props) {
+  const disqusShortname = 'saul';
+  const disqusConfig = {
+    url: `https://sf-nextjs-blog.vercel.app/post/${post.slug}`,
+    identifier: post._id, // Single post id
+    title: post.title, // Single post title
+  };
+
   return (
     <main className='flex flex-col h-screen'>
       <img className='w-full h-40 object-cover' src={urlFor(post.mainImage).url()!} alt='' />
@@ -41,24 +48,17 @@ function Post({ post }: Props) {
           />
         </div>
       </article>
-      <footer
+
+      <div className='w-full left-0 bottom-0 mt-10 p-8 h-full bg-zinc-200 rounded-t-3xl'>
+        <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
+      </div>
+
+      {/* <footer
         id='disqus_thread'
         className='w-full left-0 bottom-0 mt-10 p-8 h-fit bg-zinc-200 rounded-t-3xl'
       >
-        <Script>
-          {`var disqus_config = function () {
-    this.page.url = document.location.href;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = post.slug // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    
-    (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-    s.src = 'https://https-sf-nextjs-blog-vercel-app.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();`}
-        </Script>
-      </footer>
+       
+      </footer> */}
     </main>
   );
 }

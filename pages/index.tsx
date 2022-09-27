@@ -22,13 +22,13 @@ export default function Home({ posts }: Props) {
           <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 p-2 md:p-6'>
             {posts.map((post) => (
               <Link key={post._id} href={`/post/${post.slug.current}`}>
-                <div className='group cursor-pointer shadow-gray-600 shadow-md rounded-lg overflow-hidden'>
+                <div className='group cursor-pointer  shadow-gray-600 shadow-md rounded-lg overflow-hidden'>
                   <img
-                    className='h-60 w-full object-cover group-hover:scale-105 transition-transform duration-200 ease-in-out'
+                    className='h-60 w-full  object-cover group-hover:scale-105 transition-transform duration-200 ease-in-out'
                     src={urlFor(post.mainImage).url()!}
                     alt=''
                   />
-                  <div className='flex justify-between p-5 bg-gray-200'>
+                  <div className='flex h-full justify-between p-5 bg-gray-100'>
                     <div>
                       <p className='font-mono font-normal'>{post.title}</p>
                       <p className='font-sans font-extralight'>
