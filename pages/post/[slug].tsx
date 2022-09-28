@@ -19,7 +19,7 @@ function Post({ post }: Props) {
   };
 
   return (
-    <main className='flex flex-col h-screen'>
+    <main className='flex flex-col'>
       <div>
         <Image
           src={urlFor(post.mainImage).url()!}
@@ -68,7 +68,7 @@ function Post({ post }: Props) {
         </div>
       </article>
 
-      <div className='w-full left-0 bottom-0 mt-10 p-8 h-full bg-zinc-200 rounded-t-3xl'>
+      <div className='mt-10 p-8 h-full bg-zinc-200 rounded-t-3xl'>
         <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
       </div>
     </main>
