@@ -14,8 +14,8 @@ function Post({ post }: Props) {
   const disqusShortname = 'https-sf-nextjs-blog-vercel-app';
   const disqusConfig = {
     url: `https://sf-nextjs-blog.vercel.app/post/`,
-    identifier: post.slug.current, // Single post id
-    title: post.title, // Single post title
+    identifier: post.slug.current,
+    title: post.title,
   };
 
   return (
@@ -68,9 +68,27 @@ function Post({ post }: Props) {
         </div>
       </article>
 
-      <div className='mt-10 p-8 h-full bg-zinc-200 rounded-t-3xl'>
+      <div className='w-full max-w-[90rem] mt-10 p-8 mb-10 self-center bg-black/30 rounded-3xl text-white'>
         <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
       </div>
+
+      <footer className='p-4 w-full max-w-[100rem] self-center bg-black/30 rounded-t-3xl shadow md:flex md:items-center md:justify-between md:p-6'>
+        <span className='text-sm text-yellow-600 sm:text-center'>
+          © 2022 Saul Fimbres . All Rights Reserved.
+        </span>
+        <ul className='flex flex-wrap items-center mt-3 text-sm text-yellow-600 sm:mt-0'>
+          <li>
+            <a href='#' className='mr-4 hover:underline md:mr-6 '>
+              About
+            </a>
+          </li>
+          <li>
+            <a href='#' className='hover:underline'>
+              Contact
+            </a>
+          </li>
+        </ul>
+      </footer>
     </main>
   );
 }
